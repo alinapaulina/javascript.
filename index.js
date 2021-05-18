@@ -1014,3 +1014,316 @@ function checkEqual(a, b) {
  //return a ===b
 }
 console.log(checkEqual(1, 2));
+
+
+function checkSign(num) {
+  return num > 0 ? "positive" : num < 0 ? "negative" : "zero"
+
+}
+console.log(checkSign(-9));
+
+
+
+ function checkScope() {
+   "use strict";
+      let i = "function scope";
+      if (true) {
+        let i = "block scope";
+        console.log("Block scope i is: ", i);
+      }
+      console.log("Function scope i is: ", i);
+      return i;
+ }
+checkScope();
+
+
+function printManyTimes(str) {
+  "use strict";
+
+  var SENTENCE = str + " is cool!";
+
+  for(let i = 0; i < str.length; i+=2) {
+    console.log(SENTENCE);
+  }
+
+} 
+printManyTimes("freeCodeCamp");
+
+
+const s = [5, 7, 2];
+function editInPlace() {
+  "use strict";
+
+  // s = [2, 5, 7];
+  s[0] = 2;
+  s[1] = 5;
+  s[2] = 7;
+
+}
+editInPlace();
+
+console.log(s);
+
+
+function freezeObj() {
+  "use strict";
+  const MATH_CONSTANTS = {
+    PI: 3.14
+  };
+
+  Object.freeze(MATH_CONSTANTS)
+
+  try {
+    MATH_CONSTANTS.PI = 99;
+  } catch( ex ) {
+    console.log(ex);
+  }
+  return MATH_CONSTANTS.PI;
+}
+const PI = freezeObj();
+
+console.log(PI);
+
+
+
+const magic = () =>  new Date();
+
+
+
+var myConcat = (arr1, arr2) => arr1.concat(arr2);
+
+console.log(myConcat([1, 2], [3, 4, 5])); 
+
+
+
+const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+
+const squareList = (arr) => {
+  const squaredIntegers = arr.filter(num => Number.isInteger(num) && num > 0).map(x => x * x);
+  return squaredIntegers;
+};
+
+const squaredIntegers = squareList(realNumberArray);
+console.log(squaredIntegers);
+
+
+const increment = (function() {
+  return function increment(number, value = 1) {
+    return number + value;
+  
+};
+})();
+console.log(increment(5, 2));
+console.log(increment(5));
+
+
+const sum = (function() {
+  return function sum(...args) {
+    return args.reduce((a, b) => a + b, 0);
+  };
+})();
+console.log(sum(1, 2, 3)); 
+
+
+
+const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+let arr2;
+(function() {
+  arr2 = [...arr1];
+  arr1[0] = 'potato'
+})();
+console.log(arr2);
+
+
+var voxel = {x: 3.6, y: 7.4, z: 6.54};
+
+var x = voxel.x; //x = 3.6
+var y = voxel.y; // y = 7.4
+var z = voxel.z; // z = 6.54
+
+const { x : o, y : l, z : m} = voxel; // o = 3.6, l = 7.4, m = 6.54
+
+
+const AVG_TEMPERATURES = {
+  today: 77.5,
+  tomorrow: 79
+};
+
+function getTempOfTmrw(avgTemperatures) {
+  "use strict";
+
+  const { today : tempOfTomorrow } = avgTemperatures; 
+
+  return tempOfTomorrow;
+}
+console.log(getTempOfTmrw(AVG_TEMPERATURES));
+
+
+
+const LOCAL_FORECAST = {
+  today: { min: 72, max: 83},
+  tomorrow: { min: 73.3, max: 84.6}
+};
+
+function getMaxOfTmrw(forecast) {
+  "use strict";
+
+  const { today : {max : maxOfTomorrow }} = forecast;
+
+  return maxOfTomorrow;
+}
+
+console.log(getMaxOfTmrw(LOCAL_FORECAST));
+
+
+
+const [p, u, , r] = [1, 2, 3, 4, 5, 6];
+console.log(p, u, r);
+
+let t = 8, q = 6;
+(() => {
+  "use strict";
+  [t, q] = [q, t] 
+})();
+console.log(t);
+console.log(q);
+
+
+const source = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+function removeFirstTwo(list) {
+
+  const [  , , ...arr] = list;
+
+  return arr;
+}
+const arr = removeFirstTwo(source);
+console.log(arr);
+console.log(source);
+
+
+const stats = {
+  max: 56.78,
+  standart_deviation: 4.34,
+  median: 34.54,
+  mode: 23.87,
+  min: -0.75,
+  average: 35.85
+};
+const half = (function (){
+  return function half({max, min}) {
+    return (max + min) / 2.0;
+  };
+})();
+console.log(stats);
+console.log(half(stats));
+
+
+const person = {
+  name: "Zodiac Hasbro",
+  age: 56
+};
+
+const greeting = `Hello, myname is ${person.name}!
+I am ${person.age} years old.`;
+
+console.log(greeting);
+
+
+const result = { 
+  succes:["max length", "no-amd", "preffer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["id-blacklist", "no-dup-keys"]
+};
+function makeList(arr) {
+  const resultDisplayArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    resultDisplayArray.push(`<li class="text-warning">${arr[i]}</li`);
+  }
+
+  return resultDisplayArray;
+}
+const resultDisplayArray = makeList(result.failure);
+console.log(resultDisplayArray);
+
+
+const createPerson = (name, age, gender) => ( { name, age, gender});
+console.log(createPerson("Zodiac Hasbro", 56, "male"));
+
+
+const bicycle = {
+  gear: 2,
+  setGear(newGear) {
+    "use strict";
+    this.gear = newGear;
+  }
+};
+
+bicycle.setGear(3);
+console.log(bicycle.gear);
+
+
+class SpaceShuttle {
+  constructor(targetPlanet) {
+  this.targetPlanet = targetPlanet;
+  };
+};
+var zeus = new SpaceShuttle('Jupiter');
+
+console.log(zeus.targetPlanet);
+
+
+
+function makeClass() {
+  class Vegetable {
+    constructor(name){
+      this.name = name;
+    }
+  }
+  return Vegetable;
+}
+const Vegetable = makeClass();
+const carrot = new Vegetable('carrot');
+console.log(carrot.name)
+
+
+class Book {
+  constructor(author) {
+    this._author = author;
+  }
+  //getter
+  get writer(){
+    return this._author;
+  }
+  //setter
+  set writer(updatedAuthor){
+    this._author = updatedAuthor;
+  }
+}
+
+
+
+function makeClass() {
+  class Thermostat {
+    constructor(temp) {
+      this._temp = 5/9 * (temp - 32);
+    }
+    get temperature(){
+      return this._temp;
+    }
+    set temperature(updatedTemp){
+      this._temp = updatedTemp
+    }
+  }
+  return Thermostat;
+}
+
+const Thermostat = makeClass();
+const thermos = new Thermostat(76);
+let temp = thermos.temperature;
+thermos.temperature = 26;
+temp = thermos.temperature;
+console.log(temp);
+
+
+
+
